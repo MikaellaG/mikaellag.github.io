@@ -6,7 +6,7 @@
     <title>Mikaella Summer · ePortfolio</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Google Fonts: Inter + Playfair Display for accent -->
+    <!-- Google Fonts: Inter + Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
@@ -17,64 +17,81 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
         body {
-            background: #f7f3f0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(145deg, #0f1a2b 0%, #1a2f44 40%, #2a1f2e 100%);
             display: flex;
             justify-content: center;
-            padding: 3rem 1.5rem;
-            line-height: 1.6;
+            align-items: center;
+            padding: 1.2rem;
+            line-height: 1.5;
             color: #2a2a2a;
-            min-height: 100vh;
-            background-image: radial-gradient(circle at 10% 20%, rgba(255, 215, 200, 0.2) 0%, transparent 50%),
-                              radial-gradient(circle at 90% 80%, rgba(180, 210, 255, 0.15) 0%, transparent 50%);
-        }
-
-        .eportfolio {
-            max-width: 960px;
-            width: 100%;
-            background: white;
-            border-radius: 3rem;
-            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
-            overflow: hidden;
             position: relative;
-            transition: all 0.2s;
         }
 
-        /* ---- decorative accent ---- */
-        .eportfolio::before {
+        /* animated background orbs */
+        body::before {
             content: '';
-            position: absolute;
-            top: -80px;
-            right: -80px;
-            width: 280px;
-            height: 280px;
+            position: fixed;
+            top: -15%;
+            right: -8%;
+            width: 500px;
+            height: 500px;
             background: radial-gradient(circle, rgba(255, 150, 120, 0.12) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
+            animation: floatOrb 12s ease-in-out infinite alternate;
         }
-        .eportfolio::after {
+        body::after {
             content: '';
-            position: absolute;
-            bottom: -60px;
-            left: -60px;
-            width: 240px;
-            height: 240px;
-            background: radial-gradient(circle, rgba(120, 180, 255, 0.10) 0%, transparent 70%);
+            position: fixed;
+            bottom: -15%;
+            left: -8%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(120, 180, 255, 0.08) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
+            animation: floatOrb 15s ease-in-out infinite alternate-reverse;
         }
 
-        /* ---- HERO (floating card style) ---- */
-        .hero {
-            background: linear-gradient(135deg, #1e2b3c 0%, #2a3f58 100%);
-            color: white;
-            padding: 2.5rem 3rem 2rem 3rem;
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 30px) scale(1.1); }
+        }
+
+        .eportfolio {
+            width: 100%;
+            height: 100%;
+            max-width: 1400px;
+            max-height: 900px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 2.5rem;
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+            display: flex;
+            flex-direction: column;
             position: relative;
             z-index: 1;
-            border-bottom: 6px solid #f6b17a;
+            overflow: hidden;
+        }
+
+        /* ---- HERO (compact, full width) ---- */
+        .hero {
+            background: linear-gradient(135deg, #1a2a3e 0%, #2a1f2e 100%);
+            color: white;
+            padding: 1.8rem 3rem 1.5rem 3rem;
+            flex-shrink: 0;
+            border-bottom: 4px solid #f6b17a;
         }
 
         .hero-top {
@@ -82,34 +99,34 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 1.8rem 2rem;
+            gap: 1rem 1.5rem;
         }
 
         .hero-left {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 95px;
+            height: 95px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             background: #3a5770;
             flex-shrink: 0;
             transition: transform 0.3s ease;
         }
         .profile-img:hover {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
 
         .name-title h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             font-weight: 600;
             letter-spacing: -0.5px;
             line-height: 1.1;
@@ -120,15 +137,15 @@
         }
 
         .badge-dev {
-            background: rgba(255, 255, 255, 0.12);
-            padding: 0.25rem 1.4rem;
+            background: rgba(255, 255, 255, 0.10);
+            padding: 0.15rem 1.2rem;
             border-radius: 40px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
             display: inline-block;
-            margin-top: 0.2rem;
+            margin-top: 0.1rem;
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: #f0e3d8;
             font-family: 'Inter', sans-serif;
             -webkit-text-fill-color: #f0e3d8;
@@ -137,87 +154,102 @@
         .contact-icons {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem 1.6rem;
+            gap: 0.6rem 1.2rem;
             background: rgba(0, 0, 0, 0.2);
-            padding: 0.5rem 1.8rem;
+            padding: 0.4rem 1.4rem;
             border-radius: 60px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            margin-top: 0.3rem;
         }
 
         .contact-icons span {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
+            gap: 0.4rem;
+            font-size: 0.78rem;
             color: #e8edf2;
         }
 
         .contact-icons i {
-            width: 1.2rem;
+            width: 1.1rem;
             color: #f6b17a;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .about-section {
-            margin-top: 1.8rem;
+            margin-top: 1rem;
             background: rgba(255, 255, 255, 0.05);
-            padding: 1rem 2rem;
+            padding: 0.7rem 1.8rem;
             border-radius: 60px;
-            border-left: 5px solid #f6b17a;
+            border-left: 4px solid #f6b17a;
             backdrop-filter: blur(2px);
         }
 
         .about-section p {
-            font-size: 0.98rem;
+            font-size: 0.88rem;
             color: #e6edf5;
-            line-height: 1.7;
+            line-height: 1.6;
         }
         .about-section p i {
             color: #f6b17a;
             opacity: 0.7;
         }
 
-        /* ---- MAIN CONTENT (single column, airy) ---- */
+        /* ---- MAIN CONTENT (flex grow, scrollable) ---- */
         .content {
-            padding: 2.8rem 3.2rem 2.5rem 3.2rem;
-            background: white;
+            padding: 1.5rem 3rem 1.2rem 3rem;
+            background: transparent;
+            flex: 1;
+            overflow-y: auto;
             position: relative;
             z-index: 1;
+            scrollbar-width: thin;
+            scrollbar-color: #d4845a rgba(255,255,255,0.1);
+        }
+
+        .content::-webkit-scrollbar {
+            width: 5px;
+        }
+        .content::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .content::-webkit-scrollbar-thumb {
+            background: #d4845a;
+            border-radius: 10px;
         }
 
         .section {
-            margin-bottom: 2.8rem;
+            margin-bottom: 1.5rem;
         }
 
         .section-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #1e2b3c;
             letter-spacing: -0.2px;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            border-bottom: 3px solid #f6e3d8;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+            border-bottom: 3px solid rgba(246, 177, 122, 0.2);
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.9rem;
         }
 
         .section-title i {
             color: #d4845a;
-            font-size: 1.2rem;
-            width: 1.8rem;
+            font-size: 1rem;
+            width: 1.6rem;
         }
 
         /* Education */
         .edu-item .institute {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: #1e2b3c;
         }
         .edu-item .detail {
-            font-size: 1rem;
+            font-size: 0.88rem;
             color: #3f4f62;
         }
         .edu-item .detail span {
@@ -227,181 +259,175 @@
 
         /* Skills */
         .skill-group {
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
         }
         .skill-group-label {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #2a3f58;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.2rem;
             letter-spacing: 0.3px;
             text-transform: uppercase;
+            opacity: 0.7;
         }
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem 0.6rem;
+            gap: 0.3rem 0.5rem;
         }
         .skill-tag {
-            background: #f5ede8;
-            padding: 0.2rem 1.2rem;
+            background: rgba(245, 237, 232, 0.6);
+            padding: 0.1rem 1rem;
             border-radius: 40px;
-            font-size: 0.8rem;
+            font-size: 0.72rem;
             font-weight: 500;
             color: #2a3f58;
-            border: 1px solid #e2d5cc;
+            border: 1px solid rgba(210, 195, 185, 0.3);
             transition: 0.1s ease;
         }
         .skill-tag:hover {
-            background: #e8ddd6;
+            background: rgba(232, 221, 214, 0.7);
             border-color: #c9b8ad;
         }
         .skill-tag.soft {
-            background: #f0ece8;
-            border-color: #d6cbc2;
+            background: rgba(240, 236, 232, 0.5);
+            border-color: rgba(200, 190, 180, 0.2);
         }
 
-        /* Projects */
+        /* Projects - more compact */
         .project-item {
-            margin-bottom: 1.8rem;
+            margin-bottom: 0.9rem;
             padding-left: 0.5rem;
-            border-left: 4px solid #f6b17a;
-            padding-left: 1.2rem;
+            border-left: 3px solid #f6b17a;
+            padding-left: 0.9rem;
         }
         .project-item strong {
-            font-size: 1.05rem;
+            font-size: 0.9rem;
             color: #1e2b3c;
             display: block;
-            margin-bottom: 0.1rem;
+            margin-bottom: 0.05rem;
         }
         .project-item .desc {
-            font-size: 0.93rem;
+            font-size: 0.82rem;
             color: #3f4f62;
-            line-height: 1.7;
+            line-height: 1.5;
         }
         .tech-badge {
             display: inline-block;
-            background: #f0e8e0;
-            font-size: 0.7rem;
-            padding: 0.1rem 1rem;
+            background: rgba(240, 232, 224, 0.5);
+            font-size: 0.6rem;
+            padding: 0.05rem 0.8rem;
             border-radius: 30px;
             color: #4a3f37;
-            margin-top: 0.3rem;
+            margin-top: 0.1rem;
             font-weight: 500;
             letter-spacing: 0.2px;
+            border: 1px solid rgba(200, 185, 175, 0.15);
         }
 
-        /* Training Badges & Certifications - card style */
+        /* Badges & Certs - more compact grid */
         .badge-grid, .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.6rem;
         }
 
         .badge-item, .cert-item {
-            background: #fcf8f6;
-            padding: 0.9rem 1.2rem;
-            border-radius: 20px;
-            border: 1px solid #ece2db;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 0.5rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: 0.15s ease;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
         .badge-item:hover, .cert-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
-            border-color: #d4845a;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-color: rgba(212, 132, 90, 0.2);
+            background: rgba(255, 255, 255, 0.6);
         }
 
         .badge-item .badge-name, .cert-item .cert-name {
             font-weight: 600;
             color: #1e2b3c;
-            font-size: 0.95rem;
+            font-size: 0.82rem;
         }
 
         .badge-item .issuer, .cert-item .issuer {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: #6f7e8f;
-            margin-top: 0.1rem;
+            margin-top: 0.05rem;
         }
 
         .badge-item .date-badge, .cert-item .expiry {
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             color: #6f5f52;
-            background: #ede5de;
-            padding: 0.05rem 0.7rem;
+            background: rgba(237, 229, 222, 0.6);
+            padding: 0.03rem 0.6rem;
             border-radius: 30px;
-            margin-left: 0.3rem;
+            margin-left: 0.2rem;
             display: inline-block;
             font-weight: 500;
         }
 
-        .cert-item {
-            background: #faf5f0;
-            border-color: #e6d6cc;
-        }
-        .cert-item .cert-name {
-            color: #2a3f58;
-        }
-
         .footer-note {
-            font-size: 0.85rem;
+            font-size: 0.72rem;
             color: #5f6f7e;
-            border-top: 2px solid #f0e8e0;
-            padding-top: 1.2rem;
-            margin-top: 1.5rem;
+            border-top: 2px solid rgba(240, 232, 224, 0.4);
+            padding-top: 0.8rem;
+            margin-top: 0.8rem;
             text-align: center;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem 2rem;
+            gap: 0.8rem 1.5rem;
+            flex-shrink: 0;
         }
         .footer-note i {
             color: #d4845a;
         }
 
         /* ---- responsive ---- */
-        @media (max-width: 700px) {
-            .hero {
-                padding: 1.8rem 1.8rem 1.5rem 1.8rem;
-            }
-            .content {
-                padding: 2rem 1.8rem;
-            }
-            .hero-top {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .hero-left {
-                width: 100%;
-            }
-            .contact-icons {
-                width: 100%;
-                padding: 0.5rem 1.2rem;
-                gap: 0.6rem 1.2rem;
-            }
-            .name-title h1 {
-                font-size: 2.2rem;
-            }
-            .profile-img {
-                width: 90px;
-                height: 90px;
-            }
+        @media (max-width: 1024px) {
+            .hero { padding: 1.5rem 2rem 1.2rem 2rem; }
+            .content { padding: 1.2rem 2rem 1rem 2rem; }
+            .name-title h1 { font-size: 2rem; }
+            .profile-img { width: 80px; height: 80px; }
             .badge-grid, .cert-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-section {
-                padding: 0.8rem 1.2rem;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             body { padding: 0.8rem; }
-            .hero { padding: 1.2rem; }
-            .content { padding: 1.2rem; }
-            .profile-img { width: 75px; height: 75px; }
-            .contact-icons span { font-size: 0.75rem; }
+            .eportfolio { border-radius: 1.8rem; max-height: none; }
+            .hero-top { flex-direction: column; align-items: flex-start; }
+            .hero-left { width: 100%; }
+            .contact-icons { width: 100%; padding: 0.4rem 1rem; gap: 0.4rem 0.8rem; }
             .name-title h1 { font-size: 1.8rem; }
+            .profile-img { width: 70px; height: 70px; }
+            .badge-grid, .cert-grid { grid-template-columns: 1fr 1fr; }
+            .about-section p { font-size: 0.82rem; }
+            .hero { padding: 1.2rem 1.2rem 1rem 1.2rem; }
+            .content { padding: 1rem 1.2rem 0.8rem 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 0.5rem; }
+            .eportfolio { border-radius: 1.2rem; }
+            .hero { padding: 0.8rem 1rem 0.8rem 1rem; }
+            .content { padding: 0.8rem 1rem 0.6rem 1rem; }
+            .profile-img { width: 60px; height: 60px; }
+            .name-title h1 { font-size: 1.4rem; }
+            .contact-icons span { font-size: 0.65rem; }
+            .badge-grid, .cert-grid { grid-template-columns: 1fr; }
+            .about-section { padding: 0.5rem 1rem; }
+            .about-section p { font-size: 0.78rem; }
+            .section-title { font-size: 0.95rem; }
+            .badge-item .badge-name, .cert-item .cert-name { font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -415,7 +441,7 @@
                 <img class="profile-img" src="profile_M.jpg" alt="Mikaella Summer Gorgonio" />
                 <div class="name-title">
                     <h1>Mikaella Summer</h1>
-                    <div class="badge-dev"><i class="fas fa-code" style="margin-right: 0.4rem;"></i> WEB DEVELOPER</div>
+                    <div class="badge-dev"><i class="fas fa-code" style="margin-right: 0.3rem;"></i> WEB DEVELOPER</div>
                 </div>
             </div>
             <div class="contact-icons">
@@ -427,46 +453,50 @@
         </div>
 
         <div class="about-section">
-            <p><i class="fas fa-quote-left" style="margin-right: 8px;"></i> A motivated and detail-oriented Frontend Web Developer with a strong foundation in building responsive, user-friendly web interfaces. Passionate about crafting clean, accessible, and visually compelling digital experiences through thoughtful UI/UX design. Proficient in modern frontend technologies including HTML, CSS, JavaScript, React, and Figma, with a keen eye for design consistency and performance optimization. Eager to contribute to a dynamic development team and grow through hands-on projects that make a meaningful impact.</p>
+            <p><i class="fas fa-quote-left" style="margin-right: 6px;"></i> A motivated and detail-oriented Frontend Web Developer with a strong foundation in building responsive, user-friendly web interfaces. Passionate about crafting clean, accessible, and visually compelling digital experiences through thoughtful UI/UX design. Proficient in modern frontend technologies including HTML, CSS, JavaScript, React, and Figma, with a keen eye for design consistency and performance optimization. Eager to contribute to a dynamic development team and grow through hands-on projects that make a meaningful impact.</p>
         </div>
     </div>
 
-    <!-- ===== CONTENT ===== -->
+    <!-- ===== CONTENT (scrollable) ===== -->
     <div class="content">
 
-        <!-- EDUCATION -->
-        <div class="section">
-            <div class="section-title"><i class="fas fa-graduation-cap"></i> EDUCATION</div>
-            <div class="edu-item">
-                <div class="institute">Mapua Malayan Colleges of Mindanao</div>
-                <div class="detail">Bachelor of Science in Computer Science <span>| Current</span></div>
-            </div>
-        </div>
-
-        <!-- SKILLS -->
-        <div class="section">
-            <div class="section-title"><i class="fas fa-cogs"></i> SKILLS</div>
-            <div class="skill-group">
-                <div class="skill-group-label">Technical</div>
-                <div class="skill-tags">
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Bootstrap</span>
-                    <span class="skill-tag">Tailwind CSS</span>
-                    <span class="skill-tag">Figma</span>
-                    <span class="skill-tag">Responsive Design</span>
-                    <span class="skill-tag">Mobile-First</span>
+        <!-- EDUCATION & SKILLS in a flex row for more compact layout -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; margin-bottom: 1.2rem;">
+            <div style="flex: 1; min-width: 180px;">
+                <div class="section" style="margin-bottom: 0;">
+                    <div class="section-title"><i class="fas fa-graduation-cap"></i> EDUCATION</div>
+                    <div class="edu-item">
+                        <div class="institute">Mapua Malayan Colleges of Mindanao</div>
+                        <div class="detail">Bachelor of Science in Computer Science <span>| Current</span></div>
+                    </div>
                 </div>
             </div>
-            <div class="skill-group">
-                <div class="skill-group-label">Soft Skills</div>
-                <div class="skill-tags">
-                    <span class="skill-tag soft">Attention to detail</span>
-                    <span class="skill-tag soft">Problem-solving</span>
-                    <span class="skill-tag soft">Adaptability</span>
-                    <span class="skill-tag soft">Team collaboration</span>
+            <div style="flex: 2; min-width: 220px;">
+                <div class="section" style="margin-bottom: 0;">
+                    <div class="section-title"><i class="fas fa-cogs"></i> SKILLS</div>
+                    <div class="skill-group">
+                        <div class="skill-group-label">Technical</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">Tailwind</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Responsive</span>
+                            <span class="skill-tag">Mobile-First</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-group-label">Soft Skills</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag soft">Attention to detail</span>
+                            <span class="skill-tag soft">Problem-solving</span>
+                            <span class="skill-tag soft">Adaptability</span>
+                            <span class="skill-tag soft">Team collaboration</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -474,68 +504,73 @@
         <!-- PROJECTS -->
         <div class="section">
             <div class="section-title"><i class="fas fa-flask"></i> ACADEMIC PROJECTS</div>
-            <div class="project-item">
-                <strong>Mapúa ParentLink</strong>
-                <div class="desc">A web-based system that automates Parent Observer role assignments in Blackboard Ultra using REST API integration, reducing manual effort for school administrators.</div>
-                <span class="tech-badge">REST API · React · Blackboard</span>
-            </div>
-            <div class="project-item">
-                <strong>Inventory Systems</strong>
-                <div class="desc">Developed and contributed to web-based inventory management systems for various businesses, focusing on frontend development to deliver intuitive and responsive user interfaces.</div>
-                <span class="tech-badge">JavaScript · Bootstrap · Figma</span>
-            </div>
-            <div class="project-item">
-                <strong>Comparative Analysis of CNN Architectures</strong>
-                <div class="desc">Conducted a comparative analysis of CNN architectures for automatic road damage detection using satellite imagery, evaluating model performance across key metrics.</div>
-                <span class="tech-badge">CNN · Python · Satellite Imagery</span>
-            </div>
-        </div>
-
-        <!-- TRAINING BADGES -->
-        <div class="section">
-            <div class="section-title"><i class="fas fa-award"></i> TRAINING BADGES</div>
-            <div class="badge-grid">
-                <div class="badge-item">
-                    <span class="badge-name">AWS Academy Cloud Architecting</span>
-                    <span class="date-badge">May 2026</span>
-                    <span class="issuer">Amazon Web Services Training</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem 1.5rem;">
+                <div class="project-item" style="margin-bottom: 0;">
+                    <strong>Mapúa ParentLink</strong>
+                    <div class="desc">Automates Parent Observer role assignments in Blackboard Ultra using REST API integration.</div>
+                    <span class="tech-badge">REST API · React · Blackboard</span>
                 </div>
-                <div class="badge-item">
-                    <span class="badge-name">Introduction to Cybersecurity</span>
-                    <span class="date-badge">Mar 2026</span>
-                    <span class="issuer">Cisco</span>
+                <div class="project-item" style="margin-bottom: 0;">
+                    <strong>Inventory Systems</strong>
+                    <div class="desc">Web-based inventory management systems focusing on frontend development for intuitive UIs.</div>
+                    <span class="tech-badge">JavaScript · Bootstrap · Figma</span>
                 </div>
-                <div class="badge-item">
-                    <span class="badge-name">AWS Gen AI Foundations</span>
-                    <span class="date-badge">Jan 2026</span>
-                    <span class="issuer">Amazon Web Services Training</span>
-                </div>
-                <div class="badge-item">
-                    <span class="badge-name">AWS Cloud Foundations</span>
-                    <span class="date-badge">Sep 2025</span>
-                    <span class="issuer">Amazon Web Services Training</span>
+                <div class="project-item" style="margin-bottom: 0;">
+                    <strong>CNN Architecture Analysis</strong>
+                    <div class="desc">Comparative analysis of CNN architectures for road damage detection using satellite imagery.</div>
+                    <span class="tech-badge">CNN · Python · Satellite Imagery</span>
                 </div>
             </div>
         </div>
 
-        <!-- CERTIFICATIONS -->
-        <div class="section">
-            <div class="section-title"><i class="fas fa-certificate"></i> CERTIFICATIONS</div>
-            <div class="cert-grid">
-                <div class="cert-item">
-                    <span class="cert-name">AWS Certified AI Practitioner</span>
-                    <span class="expiry">exp. Jul 2029</span>
-                    <span class="issuer">Amazon Web Services</span>
+        <!-- BADGES & CERTS in two columns -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 2rem;">
+            <!-- TRAINING BADGES -->
+            <div class="section" style="margin-bottom: 0;">
+                <div class="section-title"><i class="fas fa-award"></i> TRAINING BADGES</div>
+                <div class="badge-grid" style="grid-template-columns: 1fr;">
+                    <div class="badge-item">
+                        <span class="badge-name">AWS Academy Cloud Architecting</span>
+                        <span class="date-badge">May 2026</span>
+                        <span class="issuer">Amazon Web Services Training</span>
+                    </div>
+                    <div class="badge-item">
+                        <span class="badge-name">Introduction to Cybersecurity</span>
+                        <span class="date-badge">Mar 2026</span>
+                        <span class="issuer">Cisco</span>
+                    </div>
+                    <div class="badge-item">
+                        <span class="badge-name">AWS Gen AI Foundations</span>
+                        <span class="date-badge">Jan 2026</span>
+                        <span class="issuer">Amazon Web Services Training</span>
+                    </div>
+                    <div class="badge-item">
+                        <span class="badge-name">AWS Cloud Foundations</span>
+                        <span class="date-badge">Sep 2025</span>
+                        <span class="issuer">Amazon Web Services Training</span>
+                    </div>
                 </div>
-                <div class="cert-item">
-                    <span class="cert-name">IT Specialist – Data Analytics</span>
-                    <span class="expiry">exp. Oct 2030</span>
-                    <span class="issuer">Certiport (Pearson VUE)</span>
-                </div>
-                <div class="cert-item">
-                    <span class="cert-name">Microsoft Excel Associate (Office 2019)</span>
-                    <span class="expiry">exp. Oct 2028</span>
-                    <span class="issuer">Microsoft</span>
+            </div>
+
+            <!-- CERTIFICATIONS -->
+            <div class="section" style="margin-bottom: 0;">
+                <div class="section-title"><i class="fas fa-certificate"></i> CERTIFICATIONS</div>
+                <div class="cert-grid" style="grid-template-columns: 1fr;">
+                    <div class="cert-item">
+                        <span class="cert-name">AWS Certified AI Practitioner</span>
+                        <span class="expiry">exp. Jul 2029</span>
+                        <span class="issuer">Amazon Web Services</span>
+                    </div>
+                    <div class="cert-item">
+                        <span class="cert-name">IT Specialist – Data Analytics</span>
+                        <span class="expiry">exp. Oct 2030</span>
+                        <span class="issuer">Certiport (Pearson VUE)</span>
+                    </div>
+                    <div class="cert-item">
+                        <span class="cert-name">Microsoft Excel Associate (Office 2019)</span>
+                        <span class="expiry">exp. Oct 2028</span>
+                        <span class="issuer">Microsoft</span>
+                    </div>
                 </div>
             </div>
         </div>
